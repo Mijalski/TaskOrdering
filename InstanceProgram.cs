@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using TaskOrdering.Services;
 
 namespace TaskOrdering
@@ -24,10 +25,11 @@ namespace TaskOrdering
                 switch (args[0])
                 {
                     case "--generate":
-                        _instanceGenerator.GenerateInstances();
+                        await _instanceGenerator.GenerateInstancesAsync();
+                        Console.WriteLine("Generated new instances");
                         break;
                     case "--validate":
-                        _instanceValidator.ValidateInstance(args[1]);
+                        await _instanceValidator.ValidateInstanceAsync(args[1]);
                         break;
                 }
             }

@@ -6,6 +6,7 @@ namespace TaskOrdering
 {
     class Program
     {
+        public static int CORE_COUNT = 4;
 
         static async Task Main(string[] args)
         {

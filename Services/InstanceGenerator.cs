@@ -1,21 +1,24 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace TaskOrdering.Services
 {
     public class InstanceGenerator
     {
-        public void GenerateInstances()
+        private readonly InstanceSaver _instanceSaver;
+        public InstanceGenerator()
+        {
+            _instanceSaver = new InstanceSaver();
+        }
+
+        public async Task GenerateInstancesAsync()
         {
             for (var i = 50; i <= 500; i += 50)
             {
-                var savePath = Path.Combine(Environment.CurrentDirectory, "App_Data", $"in132285_{i}.txt");
                 var instance = GenerateSingleInstance(i);
-                using (var outputFile = new StreamWriter(savePath, false))
-                {
-                    outputFile.WriteLine(instance);
-                }
+                await _instanceSaver.SaveInstanceAsync(instance, i);
             }
         }
 

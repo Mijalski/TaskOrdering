@@ -9,7 +9,7 @@ namespace TaskOrdering.Services
 {
     public class InstanceLoader
     {
-        public async Task<Instance> LoadSolution(string fileName)
+        public async Task<Instance> LoadSolutionAsync(string fileName)
         {
             var readPath = Path.Combine(Environment.CurrentDirectory, "App_Data", $"{fileName}.txt");
             

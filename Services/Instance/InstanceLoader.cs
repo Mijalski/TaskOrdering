@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
-using TaskOrdering.Models;
+using TaskOrdering.Models.Instance;
 
-namespace TaskOrdering.Services
+namespace TaskOrdering.Services.Instance
 {
     public class InstanceLoader
     {
-        public async Task<Instance> LoadSolutionAsync(string fileName)
+        public async Task<Models.Instance.Instance> LoadInstanceAsync(string fileName)
         {
             var readPath = Path.Combine(Environment.CurrentDirectory, "App_Data", $"{fileName}.txt");
             
@@ -17,13 +16,14 @@ namespace TaskOrdering.Services
             using (var file = new StreamReader(readPath, false))
             {
                 string line;
+                var counter = 0;
                 while((line = await file.ReadLineAsync()) != null)
                 {
                     var taskToScheduleParameters = line.Split(' ');
 
                     switch (taskToScheduleParameters.Length)
                     {
-                        case 0:
+                        case 1:
                             continue;
                         case 3:
                         {
@@ -31,8 +31,10 @@ namespace TaskOrdering.Services
                             {
                                 TimeToComplete = Convert.ToInt64(taskToScheduleParameters[0]),
                                 ReadyTime = Convert.ToInt64(taskToScheduleParameters[1]),
-                                Deadline = Convert.ToInt64(taskToScheduleParameters[2])
+                                Deadline = Convert.ToInt64(taskToScheduleParameters[2]),
+                                Id = counter
                             };
+                            counter++;
                             taskToScheduleList.Add(taskToSchedule);
                             break;
                         }
@@ -41,7 +43,7 @@ namespace TaskOrdering.Services
                     }
                 }
 
-                return new Instance
+                return new Models.Instance.Instance
                 {
                     TasksToSchedule = taskToScheduleList
                 };

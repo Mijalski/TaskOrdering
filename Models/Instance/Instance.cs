@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TaskOrdering.Models
+namespace TaskOrdering.Models.Instance
 {
     public class Instance
     {

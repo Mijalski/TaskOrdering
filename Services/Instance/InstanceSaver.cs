@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
-using TaskOrdering.Models;
 
-namespace TaskOrdering.Services
+namespace TaskOrdering.Services.Instance
 {
     public class InstanceSaver
     {

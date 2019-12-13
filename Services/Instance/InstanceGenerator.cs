@@ -1,9 +1,8 @@
 ﻿using System;
-using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskOrdering.Services
+namespace TaskOrdering.Services.Instance
 {
     public class InstanceGenerator
     {
@@ -30,10 +29,10 @@ namespace TaskOrdering.Services
 
             for (var i = 0; i < size; i++)
             {
-                var p = Math.Floor(Random() * timeRange) + 1;
-                var r = Math.Floor(Random() * timeRange / cpuCount + i / cpuCount);
-                var d = r + p + Math.Floor(Random() * buffer) + 1;
-                instanceSb.Append($"{p} {r} {d}\r\n");
+                var timeToComplete = Math.Floor(Random() * timeRange) + 1;
+                var readyTime = Math.Floor(Random() * timeRange / cpuCount + i / cpuCount);
+                var deadline = readyTime + timeToComplete + Math.Floor(Random() * buffer) + 1;
+                instanceSb.Append($"{timeToComplete} {readyTime} {deadline}\r\n");
             }
 
             return instanceSb.ToString();

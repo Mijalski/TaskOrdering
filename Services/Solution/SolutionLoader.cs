@@ -28,6 +28,7 @@ namespace TaskOrdering.Services.Solution
                     }
                     else
                     {
+                        counter++;
 
                         foreach (var taskId in taskIdsForProcessor)
                         {
@@ -38,7 +39,6 @@ namespace TaskOrdering.Services.Solution
                                 });
                         }
 
-                        counter++;
                     }
                 }
 

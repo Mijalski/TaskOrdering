@@ -8,9 +8,12 @@ namespace TaskOrdering
     {
         public static int CORE_COUNT = 4;
 
-        static async Task Main(string[] args)
+        static void Main(string[] args)
         {
-            await new InstanceProgram().Main(args);
+            new InstanceProgram().Main(args).GetAwaiter().GetResult();
+
+            Console.WriteLine("Finished");
+            Console.ReadKey();
         }
     }
 }

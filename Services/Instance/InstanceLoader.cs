@@ -27,6 +27,7 @@ namespace TaskOrdering.Services.Instance
                             continue;
                         case 3:
                         {
+                            counter++;
                             var taskToSchedule = new TaskToSchedule
                             {
                                 TimeToComplete = Convert.ToInt64(taskToScheduleParameters[0]),
@@ -34,7 +35,6 @@ namespace TaskOrdering.Services.Instance
                                 Deadline = Convert.ToInt64(taskToScheduleParameters[2]),
                                 Id = counter
                             };
-                            counter++;
                             taskToScheduleList.Add(taskToSchedule);
                             break;
                         }

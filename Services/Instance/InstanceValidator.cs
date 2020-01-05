@@ -44,8 +44,7 @@ namespace TaskOrdering.Services.Instance
                 }
             }
 
-            await _solutionSaver.SaveInstanceAsync(mySolution, "dummy-solution");
-            Console.WriteLine($"Penalty: {mySolution.GetPenalty()}");
+            await _solutionSaver.SaveInstanceAsync(mySolution, $"validate-{instanceFileName}-{solutionFileName}");
         }
     }
 }

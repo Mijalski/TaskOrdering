@@ -20,12 +20,15 @@ namespace TaskOrdering.Models.Solving
             var lastTask = TasksScheduled.OrderByDescending(_ => _.StartTime).FirstOrDefault();
             var firstPossibleTimeToAdd = lastTask != null ? lastTask.StartTime + lastTask.TimeToComplete : 0;
             var timeStartingTask = firstPossibleTimeToAdd > task.ReadyTime ? firstPossibleTimeToAdd : task.ReadyTime;
+            var possiblePenalty = timeStartingTask + task.TimeToComplete - task.Deadline;
 
             var newTask = new TaskScheduled
             {
                 Id = task.Id,
                 StartTime = timeStartingTask,
-                Penalty = timeStartingTask - task.Deadline > 0 ? timeStartingTask - task.Deadline : 0,
+                Penalty = possiblePenalty > 0 
+                ? possiblePenalty
+                : 0,
                 TimeToComplete = task.TimeToComplete
             };
 
